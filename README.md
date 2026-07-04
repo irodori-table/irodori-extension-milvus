@@ -13,7 +13,7 @@ This crate packages the connector metadata, native ABI exports, and driver imple
 - Native ABI: `irodori.connector.native.v1`
 - Driver linked: `yes`
 - Marketplace visibility: `public`
-- Package version: `0.1.1`
+- Package version: `0.1.2`
 
 The package uses the connector metadata and native driver directly; no desktop adapter source snapshot is required.
 
@@ -65,8 +65,8 @@ The connector advertises these authentication modes so clients can render the ri
 
 | Template | Label | Language | Result view |
 | --- | --- | --- | --- |
-| `vector-similarity` | Milvus vector search | `python` | `vectorNeighbors` |
-| `vector-filtered` | Milvus filtered search | `python` | `vectorNeighbors` |
+| `vector-similarity` | Milvus vector search | `json` | `vectorNeighbors` |
+| `vector-filtered` | Milvus filtered search | `json` | `vectorNeighbors` |
 | `vector-health` | Milvus collection stats | `text` | `table` |
 
 ## Native ABI Calls

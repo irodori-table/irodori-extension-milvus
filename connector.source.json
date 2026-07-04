@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "extensionId": "irodori.milvus",
   "visibility": "public",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "connector": {
     "id": "milvus.connector",
     "engine": "milvus",
@@ -132,10 +132,15 @@
       {
         "id": "vector-similarity",
         "label": "Milvus vector search",
-        "language": "python",
+        "language": "json",
         "description": "Search a collection with a COSINE ANN parameter block.",
-        "insertText": "collection.search(\n    data=[$vector],\n    anns_field=\"embedding\",\n    param={\"metric_type\": \"COSINE\", \"params\": {\"ef\": 64}},\n    limit=10,\n    output_fields=[\"*\"]\n)",
+        "insertText": "{\n  \"collectionName\": \"$collection\",\n  \"data\": [$vector],\n  \"annsField\": \"embedding\",\n  \"limit\": 10,\n  \"outputFields\": [\"*\"],\n  \"searchParams\": {\n    \"metricType\": \"COSINE\",\n    \"params\": { \"ef\": 64 }\n  }\n}",
         "parameters": [
+          {
+            "id": "collection",
+            "label": "Collection",
+            "type": "string"
+          },
           {
             "id": "vector",
             "label": "Query vector",
@@ -147,10 +152,15 @@
       {
         "id": "vector-filtered",
         "label": "Milvus filtered search",
-        "language": "python",
+        "language": "json",
         "description": "Add a scalar filter expression to vector search.",
-        "insertText": "collection.search(\n    data=[$vector],\n    anns_field=\"embedding\",\n    param={\"metric_type\": \"COSINE\", \"params\": {\"ef\": 64}},\n    limit=10,\n    expr='$field == \"$value\"',\n    output_fields=[\"*\"]\n)",
+        "insertText": "{\n  \"collectionName\": \"$collection\",\n  \"data\": [$vector],\n  \"annsField\": \"embedding\",\n  \"filter\": \"$field == \\\"$value\\\"\",\n  \"limit\": 10,\n  \"outputFields\": [\"*\"],\n  \"searchParams\": {\n    \"metricType\": \"COSINE\",\n    \"params\": { \"ef\": 64 }\n  }\n}",
         "parameters": [
+          {
+            "id": "collection",
+            "label": "Collection",
+            "type": "string"
+          },
           {
             "id": "vector",
             "label": "Query vector",
@@ -174,7 +184,7 @@
         "label": "Milvus collection stats",
         "language": "text",
         "description": "Inspect collection schema, indexes, and load state.",
-        "insertText": "describe_collection($collection)",
+        "insertText": "POST /v2/vectordb/collections/describe\n{\n  \"collectionName\": \"$collection\"\n}",
         "parameters": [
           {
             "id": "collection",

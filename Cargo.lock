@@ -357,7 +357,7 @@ dependencies = [
 
 [[package]]
 name = "irodori-extension-milvus"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "irodori-connector-abi",
  "reqwest",
