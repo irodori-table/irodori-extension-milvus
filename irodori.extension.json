@@ -7,7 +7,7 @@
   "publisher": "irodori",
   "description": "Milvus Connector contributes the Milvus database connector through the native connector ABI.",
   "license": "MIT OR 0BSD",
-  "repository": "https://github.com/hjosugi/irodori-extension-milvus",
+  "repository": "https://github.com/irodori-table/irodori-extension-milvus",
   "apiVersion": "0.1",
   "runtime": "native",
   "entry": "dist/native",
